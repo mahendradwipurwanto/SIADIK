@@ -1,0 +1,420 @@
+/* PROGRESS */
+select.list-dt {
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid #ccc;
+  padding: 2px 5px 3px 5px;
+  margin: 2px
+}
+
+select.list-dt:focus {
+  border-bottom: 2px solid skyblue
+}
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  color: lightgrey;
+  padding: 0;
+}
+
+#progressbar .active {
+  color: #000000
+}
+
+#progressbar li {
+  list-style-type: none;
+  font-size: 12px;
+  width: 33.3333333333%;
+  float: left;
+  position: relative
+}
+
+#progressbar #account:before {
+  font-family: FontAwesome;
+  content: "\f024"
+}
+
+#progressbar #personal:before {
+  font-family: FontAwesome;
+  content: "\f03a"
+}
+
+#progressbar #confirm:before {
+  font-family: FontAwesome;
+  content: "\f00c"
+}
+
+#progressbar li:before {
+  width: 50px;
+  height: 50px;
+  line-height: 45px;
+  display: block;
+  font-size: 18px;
+  color: #ffffff;
+  background: lightgray;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  padding: 2px
+}
+
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: lightgray;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: skyblue
+}
+
+#msform {
+  text-align: center;
+  position: relative;
+}
+.title{
+  font-size: 1em !important;
+  font-weight: bold !important;
+}
+fieldset.scheduler-border {
+  border-radius: 4px;
+  border: 1px solid #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+}
+
+legend.scheduler-border {
+  font-size: 1em !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  width:auto;
+  padding:0 10px;
+  border-bottom:none;
+}
+
+/* SELECT2 */
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 38px;
+}
+.select2-container .select2-selection--single {
+  height: 38px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 36px;
+}
+.select2-selection__clear {
+  display: none;
+}
+.select2-container {
+  width: 100% !important;
+}
+
+/* File Input */
+
+.file-area {
+  width: 100%;
+  position: relative;
+}
+.file-area input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-area .file-dummy {
+  width: 100%;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  text-align: center;
+  transition: background 0.3s ease-in-out;
+}
+.file-area:hover .file-dummy {
+  background: rgba(255, 255, 255, 0.1);
+}
+.file-area input[type="file"]:focus + .file-dummy {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.file-area input[type="file"]:valid + .file-dummy {
+  border-color: rgb(199 199 199 / 40%);
+  background-color: rgb(199 198 198 / 30%);
+}
+
+/* SWITCH FREEBIES */
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFFF; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Ya";
+    padding-left: 10px;
+    background-color: #3877FF; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "Tidak";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #FFFFFF; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+/**
+ * FilePond Custom Styles
+ */
+.filepond--drop-label {
+	color: #4c4e53;
+}
+
+.filepond--label-action {
+	text-decoration-color: #babdc0;
+}
+
+.filepond--panel-root {
+	border-radius: 2em;
+	background-color: #edf0f4;
+	height: 1em;
+}
+
+.filepond--item-panel {
+	background-color: #595e68;
+}
+
+.filepond--drip-blob {
+	background-color: #7f8a9a;
+}
+
+
+/* SCROLL BAR */
+
+/* width */
+::-webkit-scrollbar {
+  width: 7.5px;
+	height: 7.5px;
+  cursor: pointer;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0061f2;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0061f2;
+  opacity: 0.9;
+  cursor: pointer !important;
+}
+
+
+/* CSS CUSTOM */
+
+.btn-buat{
+	margin: 0 20px;
+	margin-top: 20px;
+}
+
+.card-kategori, .card-kategori:hover{
+	text-decoration: none;
+    color: #687281;
+}
+
+.card-kategori:hover{
+	color: #a2acba !important;
+}
+
+.no-dec{
+	text-decoration: none;
+    color: #687281;
+}
+
+.no-dec:hover{
+	color: #a2acba !important;
+	text-decoration: none;
+}
+
+.bg-cs{
+	background-image: url("../img/bg.jpg");
+	background-size: 200% 200%;
+	overflow: hidden;
+}
+
+.font-size-4r{
+	font-size: 4rem;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/*C:\Users\mahendradwipurwanto\AppData\Roaming\IDM*/
+
+.hide{
+  display: none !important;
+}
+.btn-buat{
+	margin: 0 20px;
+	margin-top: 20px;
+}
+
+.card-kategori, .card-kategori:hover{
+	text-decoration: none;
+	color: #687281;
+}
+
+.card-kategori:hover{
+	color: #a2acba !important;
+}
+
+.no-dec{
+	text-decoration: none;
+	color: #687281;
+}
+
+.no-dec:hover{
+	color: #a2acba !important;
+	text-decoration: none;
+}
+
+.bg-cs{
+	background-image: url("../img/bg.jpg");
+	background-size: 200% 200%;
+	overflow: hidden;
+}
+
+.font-size-4r{
+	font-size: 4rem;
+}
+
+.vertical-center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+/*C:\Users\mahendradwipurwanto\AppData\Roaming\IDM*/
+
+
+.img-account-profile {
+	position: relative !important;
+	width: 100% !important;
+	height: auto !important;
+}
+
+.b-pic{
+	width: 100% !important;
+	height: 250px !important;
+	margin-bottom: 10px !important;
+	overflow: hidden !important;
+}
+
+
+.alcs{
+	position: absolute;
+	right: 23px;
+	top: 18px;
+	z-index: 10;
+}
+
+.c--card {
+	background-color: #fff;
+  width: 100%;                 /* Set width of cards */
+  display: flex;                /* Children use Flexbox */
+  flex-direction: column;       /* Rotate Axis */
+  border: 1px solid #EF9A9A;    /* Set up Border */
+  border-radius: 4px;           /* Slightly Curve edges */
+  overflow: hidden;             /* Fixes the corners */
+  margin: 5px;                  /* Add space between cards */
+}
+
+.card--header {
+  color: #D32F2F;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #EF9A9A;
+  background-color: #FFEBEE;
+  padding: 5px 10px;
+}
+
+.card--main {
+  display: flex;              /* Children use Flexbox */
+  flex-direction: column;     /* Rotate Axis to Vertical */
+  justify-content: center;    /* Group Children in Center */
+  align-items: center;        /* Group Children in Center (on cross axis) */
+  padding: 15px 0;            /* Add padding to the top/bottom */
+}
+
+.material-icons {
+  font-size: 36px;
+  color: #D32F2F;
+  margin-bottom: 5px;
+}
+
+.main--description {
+  color: #D32F2F;
+  font-size: 12px;
+  text-align: center;
+}
+
+.text-none{
+	text-decoration: none !important;
+}
+
+.text-none:hover{
+	text-decoration: none !important;
+}
