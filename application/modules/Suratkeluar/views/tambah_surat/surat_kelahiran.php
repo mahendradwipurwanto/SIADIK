@@ -31,8 +31,8 @@
             <div class="row mb-2">
               <div class="col-md-6">
                 <label class="title">Nama Ayah</label>
-                <input type="hidden" name="ID[]" value="NAMA_AYAH">
-                <input type="search" class="form-control get_ayah" name="VALUE[]" placeholder="Masukkan nama ayah" id="get_ayah" required>
+                <input type="hidden" name="ID[]" value="NAMA_AYAH" id="id_ayah">
+                <input type="search" class="form-control" name="VALUE[]" placeholder="Masukkan nama ayah" id="pend1" required>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -122,27 +122,35 @@
     </div>
   </div>
 </form>
-<!-- <script type='text/javascript'>
-var site = "<?php echo site_url();?>";
-$(function(){
-  $('.get_ayah').autocomplete({
-    // serviceUrl berisi URL ke controller/fungsi yang menangani request kita
-    serviceUrl: site+'Suratkeluar/cari_penduduk',
-    // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
-    onSelect: function (suggestion) {
-      $('#get_ayah').val(''+suggestion.nama); // membuat id 'v_nim' untuk ditampilkan
-    }
-  });
-});
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
 
-$(function(){
-  $('#get_ibu').autocomplete({
-    // serviceUrl berisi URL ke controller/fungsi yang menangani request kita
-    serviceUrl: site+'Suratkeluar/cari_penduduk',
-    // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
-    onSelect: function (suggestion) {
-      $('#get_ibu').val(''+suggestion.nama); // membuat id 'v_nim' untuk ditampilkan
-    }
-  });
-});
-</script> -->
+$(document).ready(function(){
+
+     // Initialize
+     $( "#pend1" ).autocomplete({
+        source: function( request, response ) {
+          // Fetch data
+          $.ajax({
+            url: "<?= site_url('Suratkeluar/userList') ?>",
+            type: 'post',
+            dataType: "json",
+            data: {
+              search: request.term
+            },
+            success: function( data ) {
+              response( data );
+            }
+          });
+        },
+        select: function (event, ui) {
+          // Set selection
+          $('#id').val(ui.item.id); // display the selected text
+          $('#pend1').val(ui.item.nama); // save selected id to input
+          return false;
+        }
+      });
+
+    });
+
+</script>

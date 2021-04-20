@@ -30,6 +30,57 @@ class Penduduk extends MX_Controller {
 		echo Modules::run('Template/Template_main', $data);
 	}
 
+	function get_data_user(){
+		$list = $this->M_penduduk->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $field) {
+			$row = array();
+			$no++;
+
+			$row[] = '
+			<input type="checkbox" name="msg[]" value="'.$field->ID_PENDUDUK.'">
+			';
+			$row[] = $no;
+
+			$row[] = '
+			<a href="'.site_url('Penduduk/Ubah-Penduduk/'.$field->ID_PENDUDUK).'" class="btn btn-datatable btn-icon btn-transparent-dark mr-1"><i class="text-info fa fa-edit" data-feather="edit"></i></a>
+			<button class="btn btn-datatable btn-icon btn-transparent-dark mr-1" onclick="delete_person('."'".$field->ID_PENDUDUK."'".')"><i class="text-danger fa fa-trash" data-feather="trash-2"></i></button>
+			<a href="'.site_url('Penduduk/Detail-Penduduk/'.$field->ID_PENDUDUK).'" target="_blank" class="btn btn-datatable btn-icon btn-transparent-dark" ><i class="text-warning fa fa-eye" data-feather="eye"></i></a>
+			';
+
+			$row[] = $field->NIK;
+			$row[] = $field->NAMA;
+			$row[] = $field->JK;
+			$row[] = $field->TEMPAT_LAHIR." - ".date("d F Y", strtotime($field->TGL_LAHIR));
+
+			$data[] = $row;
+		}
+
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->M_penduduk->count_all(),
+			"recordsFiltered" => $this->M_penduduk->count_filtered(),
+			"data" => $data,
+		);
+		//output dalam format JSON
+		echo json_encode($output);
+	}
+
+	public function ajax_delete($id){
+		$this->M_penduduk->delete_by_id($id);
+		echo json_encode(array("status" => TRUE));
+	}
+
+	function hapus_data_all(){
+
+		$a =  count($this->input->post('msg', true));
+		$this->M_penduduk->hapus_data_all();
+
+		$this->session->set_flashdata('success', "berhasil menghapus ".$a." data penduduk");
+		redirect('Penduduk');
+	}
+
 	public function detail_penduduk($NIK){
 		if ($this->M_penduduk->get_penduduk_single($NIK) == TRUE) {
 			$data['penduduk'] 				= $this->M_penduduk->get_penduduk_single($NIK);

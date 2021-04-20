@@ -43,6 +43,16 @@ class Suratkeluar extends MX_Controller {
 		echo json_encode($arr);
 	}
 
+	public function userList(){
+    // POST data
+    $postData = $this->input->post();
+
+    // Get data
+    $data = $this->M_suratkeluar->getPenduduks($postData);
+
+    echo json_encode($data);
+  }
+
 	public function tambah_1(){
 		$data['kategori'] 	= $this->M_suratkeluar->get_kategori();
 		$data['controller']	= $this;
@@ -89,51 +99,51 @@ class Suratkeluar extends MX_Controller {
 	}
 
 	public function edit_surat($ID_KATEGORI, $ID_SURATK){
-			if ($this->M_suratkeluar->get_kategori_single($ID_KATEGORI) == FALSE) {
-				$this->session->set_flashdata('error', "Tidak dapat menemukan data dari kategori tersebut!");
-				redirect('Surat-Keluar/Tambah-Surat-Keluar');
+		if ($this->M_suratkeluar->get_kategori_single($ID_KATEGORI) == FALSE) {
+			$this->session->set_flashdata('error', "Tidak dapat menemukan data dari kategori tersebut!");
+			redirect('Surat-Keluar/Tambah-Surat-Keluar');
+		}else {
+			$data['kategori'] 	= $this->M_suratkeluar->get_kategori_single($ID_KATEGORI);
+			$data['suratkeluar'] 				= $this->M_suratkeluar->get_suratkeluar_single($ID_SURATK);
+			$data['controller']	= $this;
+
+			$data['module'] 		= "Suratkeluar";
+
+			if ($ID_KATEGORI == 2) {
+				$data['fileview'] 	= "edit_surat/surat_kelahiran";
+			}elseif ($ID_KATEGORI == 3) {
+				$data['fileview'] 	= "surat/";
 			}else {
-				$data['kategori'] 	= $this->M_suratkeluar->get_kategori_single($ID_KATEGORI);
-				$data['suratkeluar'] 				= $this->M_suratkeluar->get_suratkeluar_single($ID_SURATK);
-				$data['controller']	= $this;
-
-				$data['module'] 		= "Suratkeluar";
-
-				if ($ID_KATEGORI == 2) {
-					$data['fileview'] 	= "edit_surat/surat_kelahiran";
-				}elseif ($ID_KATEGORI == 3) {
-					$data['fileview'] 	= "surat/";
-				}else {
-					$this->session->set_flashdata('error', "Kategori surat belum memiliki form untuk diisi, harap hubungi dev untuk menambahkan form.");
-					redirect('Surat-Keluar/Tambah-Surat-Keluar');
-				}
-
-				echo Modules::run('Template/Template_main', $data);
+				$this->session->set_flashdata('error', "Kategori surat belum memiliki form untuk diisi, harap hubungi dev untuk menambahkan form.");
+				redirect('Surat-Keluar/Tambah-Surat-Keluar');
 			}
+
+			echo Modules::run('Template/Template_main', $data);
+		}
 	}
 
 	public function detail_surat($ID_KATEGORI, $ID_SURATK){
-			if ($this->M_suratkeluar->get_kategori_single($ID_KATEGORI) == FALSE) {
-				$this->session->set_flashdata('error', "Tidak dapat menemukan data dari kategori tersebut!");
-				redirect('Surat-Keluar/Tambah-Surat-Keluar');
+		if ($this->M_suratkeluar->get_kategori_single($ID_KATEGORI) == FALSE) {
+			$this->session->set_flashdata('error', "Tidak dapat menemukan data dari kategori tersebut!");
+			redirect('Surat-Keluar/Tambah-Surat-Keluar');
+		}else {
+			$data['kategori'] 	= $this->M_suratkeluar->get_kategori_single($ID_KATEGORI);
+			$data['suratkeluar'] 				= $this->M_suratkeluar->get_suratkeluar_single($ID_SURATK);
+			$data['controller']	= $this;
+
+			$data['module'] 		= "Suratkeluar";
+
+			if ($ID_KATEGORI == 2) {
+				$data['fileview'] 	= "detail_surat/surat_kelahiran";
+			}elseif ($ID_KATEGORI == 3) {
+				$data['fileview'] 	= "surat/";
 			}else {
-				$data['kategori'] 	= $this->M_suratkeluar->get_kategori_single($ID_KATEGORI);
-				$data['suratkeluar'] 				= $this->M_suratkeluar->get_suratkeluar_single($ID_SURATK);
-				$data['controller']	= $this;
-
-				$data['module'] 		= "Suratkeluar";
-
-				if ($ID_KATEGORI == 2) {
-					$data['fileview'] 	= "detail_surat/surat_kelahiran";
-				}elseif ($ID_KATEGORI == 3) {
-					$data['fileview'] 	= "surat/";
-				}else {
-					$this->session->set_flashdata('error', "Kategori surat belum memiliki form untuk diisi, harap hubungi dev untuk menambahkan form.");
-					redirect('Surat-Keluar/Tambah-Surat-Keluar');
-				}
-
-				echo Modules::run('Template/Template_main', $data);
+				$this->session->set_flashdata('error', "Kategori surat belum memiliki form untuk diisi, harap hubungi dev untuk menambahkan form.");
+				redirect('Surat-Keluar/Tambah-Surat-Keluar');
 			}
+
+			echo Modules::run('Template/Template_main', $data);
+		}
 	}
 
 	// BASE CUD Controller

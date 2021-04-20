@@ -12,6 +12,26 @@ class M_suratkeluar extends CI_Model {
 		return $this->db->get('TB_PENDUDUK')->result();
 	}
 
+	function getPenduduks($postData){
+
+     $response = array();
+
+     if(isset($postData['search']) ){
+       // Select record
+       $this->db->select('*');
+       $this->db->where("NAMA like '%".$postData['search']."%' ");
+
+       $records = $this->db->get('TB_PENDUDUK')->result();
+
+       foreach($records as $row ){
+          $response[] = array("id" => $row->ID_PENDUDUK, "nama" => $row->NAMA);
+       }
+
+     }
+
+     return $response;
+  }
+
 	public function get_kategori(){
 		$query = $this->db->query("SELECT * FROM TB_KATEGORI ORDER BY ID_KATEGORI DESC");
 

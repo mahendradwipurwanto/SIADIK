@@ -17,7 +17,7 @@
   <link href="<?php echo base_url();?>assets/backend/css/plugin/daterangepicker/daterangepicker.css" rel="stylesheet" crossorigin="anonymous" />
   <link href="<?php echo base_url();?>assets/backend/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-  <link href='<?php echo base_url(); ?>assets/backend/js/plugin/autocomplete/jquery.autocomplete.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
   <script src="<?php echo base_url();?>assets/backend/js/plugin/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
   <script src="<?php echo base_url();?>assets/backend/js/plugin/feather-icons/4.27.0/feather.min.js" crossorigin="anonymous"></script>
@@ -26,8 +26,7 @@
   <script src="<?php echo base_url();?>assets/backend/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-  <script type='text/javascript' src='<?php echo base_url(); ?>assets/backend/js/plugin/autocomplete/jquery.autocomplete.js'></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js" integrity="sha512-jNDtFf7qgU0eH/+Z42FG4fw3w7DM/9zbgNPe3wfJlCylVDTT3IgKW5r92Vy9IHa6U50vyMz5gRByIu4YIXFtaQ==" crossorigin="anonymous"></script>
 </head>
 <body class="nav-fixed">
   <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">

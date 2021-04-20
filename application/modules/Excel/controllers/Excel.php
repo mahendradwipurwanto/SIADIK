@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+ini_set('memory_limit', '-1');
+ini_set('max_execution_time', '300');
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
@@ -49,7 +52,7 @@ class Excel extends MX_Controller {
 				);
 
 				$this->db->insert("TB_PENDUDUK", $data);
-				$count++;
+				++$count;
 			}
 
 				$this->session->set_flashdata('success', "Berhasil meng-impor data penduduk, sebanyak <b>".$count."</b>");

@@ -11,7 +11,8 @@
 
               <div class="form-group">
                 <label class="title">No. KK <small class="text-danger">*</small></label>
-                <input type="text" class="form-control" name="KK" placeholder="Masukkan nomor KK" required>
+                <input type="text" class="form-control" name="KK" placeholder="Masukkan nomor KK">
+                <small class="text-muted">(jika ada)</small>
               </div>
               <div class="form-group">
                 <label class="title">No. NIK <small class="text-danger">*</small></label>
