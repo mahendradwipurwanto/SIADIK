@@ -81,6 +81,17 @@ class Penduduk extends MX_Controller {
 		redirect('Penduduk');
 	}
 
+	public function delete_all(){
+
+		if ($this->M_penduduk->delete_all() == TRUE) {
+			$this->session->set_flashdata('success', "Berhasil menghapus semua data");
+			redirect('Penduduk');
+		}else{
+			$this->session->set_flashdata('error', "Gagal menghapus semua data");
+			redirect('Penduduk');
+		}
+	}
+
 	public function detail_penduduk($NIK){
 		if ($this->M_penduduk->get_penduduk_single($NIK) == TRUE) {
 			$data['penduduk'] 				= $this->M_penduduk->get_penduduk_single($NIK);

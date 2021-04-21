@@ -31,14 +31,20 @@
             <div class="row mb-2">
               <div class="col-md-6">
                 <label class="title">Nama Ayah</label>
-                <input type="hidden" name="ID[]" value="NAMA_AYAH" id="id_ayah">
-                <input type="search" class="form-control" name="VALUE[]" placeholder="Masukkan nama ayah" id="pend1" required>
+                <input type="hidden" name="ID[]" value="NIK_AYAH">
+                <input type="hidden" name="VALUE[]" id="nik_ayah">
+
+                <input type="hidden" name="ID[]" value="NAMA_AYAH">
+                <input type="search" class="form-control autocomplete" name="VALUE[]" placeholder="Masukkan nama ayah" id="pend1" required>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="title">Nama Ibu</label>
+                  <input type="hidden" name="ID[]" value="NIK_IBU">
+                  <input type="hidden" name="VALUE[]" id="nik_ibu">
+
                   <input type="hidden" name="ID[]" value="NAMA_IBU">
-                  <input type="search" class="form-control autocomplete" name="VALUE[]" placeholder="Masukkan nama ibu" id="get_ibu" required>
+                  <input type="search" class="form-control autocomplete" name="VALUE[]" placeholder="Masukkan nama ibu" id="pend2" required>
                 </div>
               </div>
             </div>
@@ -127,30 +133,52 @@
 
 $(document).ready(function(){
 
-     // Initialize
-     $( "#pend1" ).autocomplete({
-        source: function( request, response ) {
-          // Fetch data
-          $.ajax({
-            url: "<?= site_url('Suratkeluar/userList') ?>",
-            type: 'post',
-            dataType: "json",
-            data: {
-              search: request.term
-            },
-            success: function( data ) {
-              response( data );
-            }
-          });
+  // Initialize
+  $( "#pend1" ).autocomplete({
+    source: function( request, response ) {
+      // Fetch data
+      $.ajax({
+        url: "<?= site_url('Suratkeluar/userList') ?>",
+        type: 'post',
+        dataType: "json",
+        data: {
+          search: request.term
         },
-        select: function (event, ui) {
-          // Set selection
-          $('#id').val(ui.item.id); // display the selected text
-          $('#pend1').val(ui.item.nama); // save selected id to input
-          return false;
+        success: function( data ) {
+          response( data );
         }
       });
+    },
+    select: function (suggestion) {
+      // Set selection
+      $('#nik_ayah').val(''+suggestion.nik); // membuat id 'v_nim' untuk
+      $('#pend1').val(''+suggestion.nama); // membuat id 'v_jurusan' untuk ditampilkan
+    }
+  });
 
-    });
+  // Initialize
+  $( "#pend2" ).autocomplete({
+    source: function( request, response ) {
+      // Fetch data
+      $.ajax({
+        url: "<?= site_url('Suratkeluar/userList') ?>",
+        type: 'post',
+        dataType: "json",
+        data: {
+          search: request.term
+        },
+        success: function( data ) {
+          response( data );
+        }
+      });
+    },
+    select: function (suggestion) {
+      // Set selection
+      $('#nik_ibu').val(''+suggestion.nik); // membuat id 'v_nim' untuk
+      $('#pend2').val(''+suggestion.nama); // membuat id 'v_jurusan' untuk ditampilkan
+    }
+  });
+
+});
 
 </script>

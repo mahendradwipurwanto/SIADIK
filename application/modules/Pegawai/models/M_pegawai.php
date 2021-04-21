@@ -7,7 +7,7 @@ class M_pegawai extends CI_Model {
 	}
 
 	function get_pegawai(){
-		$query = $this->db->query("SELECT a.*, b.ID_USER as USER FROM TB_PEGAWAI a LEFT JOIN TB_AUTH b ON a.ID_USER = b.ID_USER ORDER BY a.NO_PEGAWAI ASC");
+		$query = $this->db->query("SELECT a.*, b.USERNAME, b.ID_USER as USER FROM TB_PEGAWAI a LEFT JOIN TB_AUTH b ON a.ID_USER = b.ID_USER ORDER BY a.NO_PEGAWAI ASC");
 		if($query->num_rows() > 0){
 			return $query->result();
 		}else{

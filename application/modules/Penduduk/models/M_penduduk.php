@@ -37,7 +37,7 @@ class M_penduduk extends CI_Model {
 		'IBU',
 		'AYAH',
 	); //field yang diizin untuk pencarian
-	var $order = array('NIK' => 'asc'); // default order
+	var $order = array('ID_PENDUDUK' => 'asc'); // default order
 
 	function __construct(){
 		parent::__construct();
@@ -129,6 +129,11 @@ class M_penduduk extends CI_Model {
 			$this->db->where('ID_PENDUDUK', $delete[$i]);
 			$this->db->delete($this->table);
 		}
+	}
+
+	function delete_all() {
+		$this->db->query("DELETE FROM TB_PENDUDUK");
+		return ($this->db->affected_rows() != 1) ? false : true;
 	}
 
 

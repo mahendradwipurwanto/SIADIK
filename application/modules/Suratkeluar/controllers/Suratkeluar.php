@@ -27,16 +27,20 @@ class Suratkeluar extends MX_Controller {
 
 	function cari_penduduk($keyword){
 		// tangkap variabel keyword dari URL
+		$keyword = $this->uri->segment(3);
 
 		// cari di database
-		$data = $this->db->from('TB_PENDUDUK')->like('NAMA', $keyword)->get();
+		$data = $this->db->from('TB_PENDUDUK')->like('NAMA',$keyword)->get();
 
 		// format keluaran di dalam array
 		foreach($data->result() as $row)
 		{
 			$arr['query'] = $keyword;
 			$arr['suggestions'][] = array(
-				'nama'		=>$row->NAMA,
+				'id'	=>$row->ID_PENDUDUK,
+				'nik'	=>$row->NIK,
+				'nama'	=>$row->NAMA
+
 			);
 		}
 		// minimal PHP 5.2
@@ -50,7 +54,16 @@ class Suratkeluar extends MX_Controller {
     // Get data
     $data = $this->M_suratkeluar->getPenduduks($postData);
 
-    echo json_encode($data);
+		foreach($data as $row ){
+          $response[] = array(
+						"id" 		=> $row->ID_PENDUDUK,
+						"nik" 	=> $row->NIK,
+						"value" => $row->NAMA,
+						"nama" 	=> $row->NAMA
+					);
+       }
+
+    echo json_encode($response);
   }
 
 	public function tambah_1(){

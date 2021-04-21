@@ -52,6 +52,7 @@
                 <th>No</th>
                 <th>Misc</th>
                 <th>No Pegawai</th>
+                <th>Username</th>
                 <th>Nama</th>
                 <th>No Telepon</th>
                 <th>Jabatan</th>
@@ -75,6 +76,7 @@
                       <?php }?>
                     </td>
                     <td><?= $key->NO_PEGAWAI;?></td>
+                    <td><?= (isset($key->USERNAME) ? $key->USERNAME : 'Belum diatur');?></td>
                     <td><?= $key->NAMA;?></td>
                     <td><?= $key->HP;?></td>
                     <td><?= $key->JABATAN;?></td>
@@ -161,7 +163,7 @@
                           <div class="modal-body">
                             <div class="form-group">
                               <label class="title">Username Pegawai <small class="text-danger">*</small></label>
-                              <input type="text" class="form-control" name="USERNAME" minlength="5" maxlength="20" placeholder="Masukkan username" required>
+                              <input type="text" class="form-control" name="USERNAME" minlength="5" maxlength="20" <?= (isset($key->USERNAME) ? 'value="'.$key->USERNAME.'"' : 'placeholder="Masukkan Username"');?> required>
                               <small class="text-muted">Minimal 6 karakter, Maksimal 20 Karakter</small>
                             </div>
                             <div class="form-group">

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ini_set('memory_limit', '-1');
-ini_set('max_execution_time', '300');
+ini_set('max_execution_time', '360');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
@@ -19,44 +19,54 @@ class Excel extends MX_Controller {
 
 		if(isset($_FILES['FILE_EXCEL']['name']) && in_array($_FILES['FILE_EXCEL']['type'], $file_mimes)) {
 
-			$arr_file = explode('.', $_FILES['FILE_EXCEL']['name']);
-			$extension = end($arr_file);
+			if ($_FILES['FILE_EXCEL']['size'] < 5242880) {
 
-			if('csv' == $extension) {
-				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-			} else {
-				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-			}
+				$arr_file = explode('.', $_FILES['FILE_EXCEL']['name']);
+				$extension = end($arr_file);
 
-			$spreadsheet = $reader->load($_FILES['FILE_EXCEL']['tmp_name']);
+				if('csv' == $extension) {
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+				} else {
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+				}
 
-			$sheetData = $spreadsheet->getActiveSheet()->toArray();
-			$count = 0;
-			for($i = 2;$i < count($sheetData);$i++)
-			{
-				$data = array(
-					'NIK' => $sheetData[$i]['1'],
-					'NAMA' => $sheetData[$i]['2'],
-					'JK' => $sheetData[$i]['3'],
-					'TEMPAT_LAHIR' => $sheetData[$i]['4'],
-					'TGL_LAHIR' => $sheetData[$i]['5'],
-					'UMUR' => $sheetData[$i]['6'],
-					'GOL_DARAH' => $sheetData[$i]['7'],
-					'AGAMA' => $sheetData[$i]['8'],
-					'STATUS' => $sheetData[$i]['9'],
-					'HUBUNGAN' => $sheetData[$i]['10'],
-					'PENDIDIKAN' => $sheetData[$i]['11'],
-					'PEKERJAAN' => $sheetData[$i]['12'],
-					'IBU' => $sheetData[$i]['13'],
-					'AYAH' => $sheetData[$i]['14'],
-				);
+				$spreadsheet = $reader->load($_FILES['FILE_EXCEL']['tmp_name']);
 
-				$this->db->insert("TB_PENDUDUK", $data);
-				++$count;
-			}
+				$sheetData = $spreadsheet->getActiveSheet()->toArray();
+				$count = 0;
+				for($i = 1;$i < count($sheetData);$i++)
+				{
+					$data = array(
+						'NIK' 					=> $sheetData[$i]['0'],
+						'NAMA' 					=> $sheetData[$i]['1'],
+						'JK' 						=> $sheetData[$i]['2'],
+						'TEMPAT_LAHIR' 	=> $sheetData[$i]['3'],
+						'TGL_LAHIR' 		=> $sheetData[$i]['4'],
+						'UMUR' 					=> $sheetData[$i]['5'],
+						'GOL_DARAH' 		=> $sheetData[$i]['6'],
+						'AGAMA' 				=> $sheetData[$i]['7'],
+						'STATUS' 				=> $sheetData[$i]['8'],
+						'HUBUNGAN' 			=> $sheetData[$i]['9'],
+						'PENDIDIKAN' 		=> $sheetData[$i]['10'],
+						'PEKERJAAN' 		=> $sheetData[$i]['11'],
+						'IBU' 					=> $sheetData[$i]['12'],
+						'AYAH' 					=> $sheetData[$i]['13']
+					);
+
+					$this->db->insert("TB_PENDUDUK", $data);
+					++$count;
+				}
+
+				// return($this->session->set_flashdata('success', "Berhasil meng-impor data penduduk, sebanyak <b>".$count."</b>"));
 
 				$this->session->set_flashdata('success', "Berhasil meng-impor data penduduk, sebanyak <b>".$count."</b>");
-				redirect('Penduduk');
+				// redirect('Penduduk');
+
+			}else{
+				$this->session->set_flashdata('error', "Ukuran file lebih dari 5MB");
+				// redirect('Penduduk');
+				// return(false);
+			}
 		}
 	}
 

@@ -9,7 +9,7 @@ class Pdf extends Dompdf
 {
     function createPDF($html, $filename='', $download=TRUE, $paper='A4', $orientation='portrait'){
         // $dompdf = new Dompdf\DOMPDF();
-        $this->load_html($html);
+        $this->loadHtml($html);
         $this->set_paper($paper, $orientation);
         $this->render();
         if($download)

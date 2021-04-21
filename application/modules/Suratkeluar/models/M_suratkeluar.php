@@ -23,13 +23,9 @@ class M_suratkeluar extends CI_Model {
 
        $records = $this->db->get('TB_PENDUDUK')->result();
 
-       foreach($records as $row ){
-          $response[] = array("id" => $row->ID_PENDUDUK, "nama" => $row->NAMA);
-       }
-
      }
 
-     return $response;
+     return $records;
   }
 
 	public function get_kategori(){
